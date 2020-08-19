@@ -15,7 +15,7 @@ class ContactsRepository {
         } catch(error) {
             if (error.code === 'ENOENT') {
                 // file does not exist no readind is necessary
-                // the will be created on demand
+                // it will be created on demand
                 this.contactsList = [];
             }
         }
