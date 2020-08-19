@@ -1,0 +1,11 @@
+{
+  "name": "crud_demo",
+  "version": "1.0.0",
+  "description": "Exemple de manipulation de fichier JSON",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nicolas Chourot",
+  "license": "ISC"
+}
