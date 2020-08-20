@@ -13,10 +13,17 @@ class CoursController{
         this.res.end(JSON.stringify(this.coursRepository.getAll()));
     }
     get(id){
-        console.log('GET: /api/cours/' + id);
-        // ok status
-        this.res.writeHead(200, {'content-type':'application/json'});
-        this.res.end(JSON.stringify(this.coursRepository.get(id)));
+        if(!isNaN(id)) {
+            console.log('GET: /api/cours/' + id);
+            // ok status
+            this.res.writeHead(200, {'content-type':'application/json'});
+            this.res.end(JSON.stringify(this.coursRepository.get(id)));
+        } else {
+            console.log('GET: /api/cours');
+            // ok status
+            this.res.writeHead(200, {'content-type':'application/json'});
+            this.res.end(JSON.stringify(this.coursRepository.getAll()));
+        }
     }
     post(cours){  
         console.log('POST: /api/cours/', cours); 

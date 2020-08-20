@@ -13,10 +13,17 @@ class ContactsController{
         this.res.end(JSON.stringify(this.contactsRepository.getAll()));
     }
     get(id){
-        console.log('GET: /api/contacts/' + id);
-        // ok status
-        this.res.writeHead(200, {'content-type':'application/json'});
-        this.res.end(JSON.stringify(this.contactsRepository.get(id)));
+        if(!isNaN(id)){
+            console.log('GET: /api/contacts/' + id);
+            // ok status
+            this.res.writeHead(200, {'content-type':'application/json'});
+            this.res.end(JSON.stringify(this.contactsRepository.get(id)));
+        } else {
+            console.log('GET: /api/contacts');
+            // ok status
+            this.res.writeHead(200, {'content-type':'application/json'});
+            this.res.end(JSON.stringify(this.contactsRepository.getAll())); 
+        }
     }
     post(contact){  
         console.log('POST: /api/contacts/', contact); 

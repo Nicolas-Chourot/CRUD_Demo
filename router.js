@@ -8,7 +8,7 @@ function capitalizeFirstLetter(s){
 // /api/{ressource name} or
 // /api/{ressource name}/{id}
 // then select the targeted controller
-// user the http verb (method) and id
+// using the http verb (req.method) and optionnal id
 // call the right controller function
 exports.dispatchEndPoint = function(req, res){
     // by convention api endpoint start with /api/...
@@ -20,7 +20,7 @@ exports.dispatchEndPoint = function(req, res){
         if (urlParts.length > 2){
             // by convention controller name -> NameController
             let controllerName = capitalizeFirstLetter(urlParts[2]) + 'Controller';
-            let id = -1;
+            let id = undefined;
             // do we have an id
             if (urlParts.length > 3){
                 id = parseInt(urlParts[3]);
@@ -38,10 +38,7 @@ exports.dispatchEndPoint = function(req, res){
                 // instanciate the controller
                 let controller =  new Controller(req, res);
                 if (req.method === 'GET') {
-                    if (id > -1)
-                        controller.get(id);
-                    else
-                        controller.getAll();
+                    controller.get(id);
                     // request consumed
                     return true;
                 }
