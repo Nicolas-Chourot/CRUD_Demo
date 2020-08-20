@@ -21,6 +21,7 @@ class ContactsController{
     post(contact){  
         console.log('POST: /api/contacts/', contact); 
         // todo : validate contact before insertion
+        // todo : avoid duplicates
         let newContact = this.contactsRepository.add(contact);
         if (newContact) {
             // created status
@@ -32,8 +33,21 @@ class ContactsController{
             this.res.end();
         }
     }
+    put(contact){
+        console.log('PUT: /api/contacts/', contact); 
+        // todo : validate contact before insertion
+        if (this.contactsRepository.update(contact)){
+            // ok status
+            this.res.writeHead(200, {'content-type':'application/json'});
+            this.res.end();
+        } else {
+            // not found status
+            this.res.writeHead(404, {'content-type':'application/json'});
+            this.res.end();
+        }
+    }
     remove(id){
-        console.log('DELETE: /api/contacts/' + id); 
+        console.log('DELETE: /api/contacts/'); 
         if (this.contactsRepository.remove(id))
             // accepted status
             this.res.writeHead(202, {'content-type':'application/json'});

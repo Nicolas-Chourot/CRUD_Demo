@@ -18,17 +18,30 @@ class CoursController{
         this.res.writeHead(200, {'content-type':'application/json'});
         this.res.end(JSON.stringify(this.coursRepository.get(id)));
     }
-    post(cour){  
-        console.log('POST: /api/cours/', cour); 
+    post(cours){  
+        console.log('POST: /api/cours/', cours); 
         // todo : validate cour before insertion
-        let newCour = this.coursRepository.add(cour);
-        if (newCour) {
+        let newCours = this.coursRepository.add(cours);
+        if (newCours) {
             // created status
             this.res.writeHead(201, {'content-type':'application/json'});
-            this.res.end(JSON.stringify(newCour));
+            this.res.end(JSON.stringify(newCours));
         } else {
             // internal error status
             this.res.writeHead(500, {'content-type':'application/json'});
+            this.res.end();
+        }
+    }
+    put(cours){
+        console.log('PUT: /api/cours/', cours); 
+        // todo : validate contact before insertion
+        if (this.contactsRepository.update(cours)){
+            // ok status
+            this.res.writeHead(200, {'content-type':'application/json'});
+            this.res.end();
+        } else {
+            // not found status
+            this.res.writeHead(404, {'content-type':'application/json'});
             this.res.end();
         }
     }

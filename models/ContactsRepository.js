@@ -14,8 +14,7 @@ class ContactsRepository {
             this.contactsList = JSON.parse(rawdata);
         } catch(error) {
             if (error.code === 'ENOENT') {
-                // file does not exist no readind is necessary
-                // it will be created on demand
+                // file does not exist, it will be created on demand
                 this.contactsList = [];
             }
         }
@@ -67,11 +66,11 @@ class ContactsRepository {
         }
         return false;
     }
-    update(id, contact) {
+    update(contactToModify) {
         let index = 0;
         for(let contact of this.contactsList){
-            if (contact.id === id) {
-                this.contactsList[index] = contact;
+            if (contact.id === contactToModify.id) {
+                this.contactsList[index] = contactToModify;
                 this.write();
                 return true;
             }

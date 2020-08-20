@@ -14,8 +14,7 @@ class CoursRepository {
             this.coursList = JSON.parse(rawdata);
         } catch(error) {
             if (error.code === 'ENOENT') {
-                // file does not exist no readind is necessary
-                // it will be created on demand
+                // file does not exist, it will be created on demand
                 this.coursList = [];
             }
         }
@@ -67,11 +66,11 @@ class CoursRepository {
         }
         return false;
     }
-    update(id, cours) {
+    update(coursToModify) {
         let index = 0;
         for(let cours of this.coursList){
-            if (cours.id === id) {
-                this.coursList[index] = cours;
+            if (cours.id === coursToModify.id) {
+                this.coursList[index] = coursToModify;
                 this.write();
                 return true;
             }

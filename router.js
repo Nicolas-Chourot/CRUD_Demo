@@ -43,6 +43,19 @@ exports.dispatchEndPoint = function(req, res){
                         }
                     });
                 }
+                if (req.method === 'PUT'){
+                    req.on('data', data =>{
+                        try {
+                            controller.put(JSON.parse(data));
+                            return true;
+                        } catch(error){
+                            console.log(error);
+                            // bad request status
+                            res.writeHead(400, {'content-type':'application/json'});
+                            res.end(data);
+                        }
+                    });
+                }
                 if (req.method === 'DELETE') {
                     if (id > -1)
                         controller.remove(id);
