@@ -35,7 +35,7 @@ class CoursController{
             this.res.end(JSON.stringify(newCours));
         } else {
             // internal error status
-            this.res.writeHead(500, {'content-type':'application/json'});
+            this.res.writeHead(500, {'content-type':'text/plain'});
             this.res.end();
         }
     }
@@ -44,11 +44,11 @@ class CoursController{
         // todo : validate contact before insertion
         if (this.contactsRepository.update(cours)){
             // ok status
-            this.res.writeHead(200, {'content-type':'application/json'});
+            this.res.writeHead(200, {'content-type':'text/plain'});
             this.res.end();
         } else {
             // not found status
-            this.res.writeHead(404, {'content-type':'application/json'});
+            this.res.writeHead(404, {'content-type':'text/plain'});
             this.res.end();
         }
     }
@@ -56,10 +56,10 @@ class CoursController{
         console.log('DELETE: /api/cours/' + id); 
         if (this.coursRepository.remove(id))
             // accepted status
-            this.res.writeHead(202, {'content-type':'application/json'});
+            this.res.writeHead(202, {'content-type':'text/plain'});
         else
             // not found status
-            this.res.writeHead(404, {'content-type':'application/json'});
+            this.res.writeHead(404, {'content-type':'text/plain'});
         this.res.end();
     }
 }

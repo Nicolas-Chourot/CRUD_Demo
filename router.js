@@ -23,16 +23,18 @@ exports.dispatchEndPoint = function(req, res){
             let id = undefined;
             // do we have an id
             if (urlParts.length > 3){
-                id = parseInt(urlParts[3]);
-                if (isNaN(id)) {
-                     // bad request status
-                     res.writeHead(400, {'content-type':'application/json'});
-                     res.end();
-                    // request not consumed
-                    return false;
+                if (urlParts[3] !== '') {
+                    id = parseInt(urlParts[3]);
+                    if (isNaN(id)) {
+                            // bad request status
+                            res.writeHead(400, {'content-type':'application/json'});
+                            res.end();
+                            // request not consumed
+                            return false;
+                        }
                 }
             }
-            try{
+            //try{
                 // dynamically import the targeted controller
                 const Controller = require('./' + controllerName);
                 // instanciate the controller
@@ -76,14 +78,14 @@ exports.dispatchEndPoint = function(req, res){
                     // request consumed
                     return true;
                 }
-            } catch(error){
+            /*} catch(error){
                 // catch likely called because of missing controller class
                 // i.e. require('./' + controllerName) failed
                 console.log('endpoint not found');
                 // not found status
                 res.writeHead(404, {'content-type':'application/json'});
                 res.end(null);
-            }
+            }*/
         }
     }
     // request not consumed

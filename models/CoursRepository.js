@@ -27,15 +27,15 @@ class CoursRepository {
     nextId() {
         let maxId = 0;
         for(let cours of this.coursList){
-            if (cours.id > maxId) {
-                maxId = contact.id;
+            if (cours.Id > maxId) {
+                maxId = cours.Id;
             }
         }
         return maxId + 1;
     }
     add(cours) {
         try {
-            cours.id = this.nextId();
+            cours.Id = this.nextId();
             this.coursList.push(cours);
             this.write();
             return cours;
@@ -48,7 +48,7 @@ class CoursRepository {
     }
     get(id){
         for(let cours of this.coursList){
-            if (cours.id === id) {
+            if (cours.Id === id) {
                return cours;
             }
         }
@@ -57,7 +57,7 @@ class CoursRepository {
     remove(id) {
         let index = 0;
         for(let cours of this.coursList){
-            if (cours.id === id) {
+            if (cours.Id === id) {
                 this.coursList.splice(index,1);
                 this.write();
                 return true;
@@ -69,7 +69,7 @@ class CoursRepository {
     update(coursToModify) {
         let index = 0;
         for(let cours of this.coursList){
-            if (cours.id === coursToModify.id) {
+            if (cours.Id === coursToModify.Id) {
                 this.coursList[index] = coursToModify;
                 this.write();
                 return true;

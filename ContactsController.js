@@ -36,7 +36,7 @@ class ContactsController{
             this.res.end(JSON.stringify(newContact));
         } else {
             // internal error status
-            this.res.writeHead(500, {'content-type':'application/json'});
+            this.res.writeHead(500, {'content-type':'text/plain'});
             this.res.end();
         }
     }
@@ -45,11 +45,11 @@ class ContactsController{
         // todo : validate contact before insertion
         if (this.contactsRepository.update(contact)){
             // ok status
-            this.res.writeHead(200, {'content-type':'application/json'});
+            this.res.writeHead(200, {'content-type':'text/plain'});
             this.res.end();
         } else {
             // not found status
-            this.res.writeHead(404, {'content-type':'application/json'});
+            this.res.writeHead(404, {'content-type':'text/plain'});
             this.res.end();
         }
     }
@@ -57,11 +57,11 @@ class ContactsController{
         console.log('DELETE: /api/contacts/'); 
         if (this.contactsRepository.remove(id))
             // accepted status
-            this.res.writeHead(202, {'content-type':'application/json'});
+            this.res.writeHead(202, {'content-type':'text/plain'});
         else
             // not found status
-            this.res.writeHead(404, {'content-type':'application/json'});
-        this.res.end();
+            this.res.writeHead(404, {'content-type':'text/plain'});
+        this.res.end(null);
     }
 }
 

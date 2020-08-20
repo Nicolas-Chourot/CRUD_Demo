@@ -1,9 +1,9 @@
 class Cours{
     constructor(nom, sigle)
     {
-        this.id = 0;
-        this.nom = nom;
-        this.sigle = sigle;
+        this.Id = 0;
+        this.Nom = nom;
+        this.Sigle = sigle;
     }
 }
 module.exports = Cours;

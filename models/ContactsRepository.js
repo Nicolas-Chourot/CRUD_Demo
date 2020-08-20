@@ -27,15 +27,15 @@ class ContactsRepository {
     nextId() {
         let maxId = 0;
         for(let contact of this.contactsList){
-            if (contact.id > maxId) {
-                maxId = contact.id;
+            if (contact.Id > maxId) {
+                maxId = contact.Id;
             }
         }
         return maxId + 1;
     }
     add(contact) {
         try {
-            contact.id = this.nextId();
+            contact.Id = this.nextId();
             this.contactsList.push(contact);
             this.write();
             return contact;
@@ -48,7 +48,7 @@ class ContactsRepository {
     }
     get(id){
         for(let contact of this.contactsList){
-            if (contact.id === id) {
+            if (contact.Id === id) {
                return contact;
             }
         }
@@ -57,7 +57,7 @@ class ContactsRepository {
     remove(id) {
         let index = 0;
         for(let contact of this.contactsList){
-            if (contact.id === id) {
+            if (contact.Id === id) {
                 this.contactsList.splice(index,1);
                 this.write();
                 return true;
@@ -69,7 +69,7 @@ class ContactsRepository {
     update(contactToModify) {
         let index = 0;
         for(let contact of this.contactsList){
-            if (contact.id === contactToModify.id) {
+            if (contact.Id === contactToModify.Id) {
                 this.contactsList[index] = contactToModify;
                 this.write();
                 return true;

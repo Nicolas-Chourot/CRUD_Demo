@@ -6,25 +6,33 @@ function initContacts(){
     contactsRepository.add(new Contact('Joel Dusablon','Joel.Dusablon@clg.qc.ca','450 430-3120'));
     contactsRepository.add(new Contact('Patrice Roy','Patrice.Roy@clg.qc.ca','450 430-3120')); 
     contactsRepository.add({
-        id : 0,
-        name: 'Warda Moussadak',
-        email: 'Warda.Moussadak@clg.qc.ca',
-        phone: '450 430-3120'
+        Id : 0,
+        Name: 'Warda Moussadak',
+        Email: 'Warda.Moussadak@clg.qc.ca',
+        Phone: '450 430-3120'
       });
       contactsRepository.add({
-        id : 0,
-        name: 'Stéphane Chassé',
-        email: 'Stephane.Chasse@clg.qc.ca',
-        phone: '450 430-3120'
+        Id : 0,
+        Name: 'Stéphane Chassé',
+        Email: 'Stephane.Chasse@clg.qc.ca',
+        Phone: '450 430-3120'
     });
 }
 //initContacts();
 //////////////////////////////////////////////////////////////////////////
 const http = require('http');
 const server = http.createServer((req, res) => {
-    let router = require('./router');
-    if (!router.dispatchEndPoint(req, res)) {
-        // do something else with request
+    console.log(req.method);
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    if (req.method === 'OPTIONS'){
+        console.log('preflight CORS verifications');
+        res.end();
+    } else {
+        let router = require('./router');
+        if (!router.dispatchEndPoint(req, res)) {
+            // do something else with request
+        }
     }
 });
 
