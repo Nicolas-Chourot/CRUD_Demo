@@ -7,6 +7,9 @@ function capitalizeFirstLetter(s){
 // parse the req.url that must have the following format:
 // /api/{ressource name} or
 // /api/{ressource name}/{id}
+// then select the targeted controller
+// user the http verb (method) and id
+// call the right controller function
 exports.dispatchEndPoint = function(req, res){
     // by convention api endpoint start with /api/...
     if (req.url.indexOf('/api/') > -1) {
