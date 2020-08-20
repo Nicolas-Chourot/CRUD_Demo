@@ -4,6 +4,9 @@ function capitalizeFirstLetter(s){
 }
 
 // api pipeline
+// parse the req.url that must have the following format:
+// /api/{ressource name} or
+// /api/{ressource name}/{id}
 exports.dispatchEndPoint = function(req, res){
     // by convention api endpoint start with /api/...
     if (req.url.indexOf('/api/') > -1) {
