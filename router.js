@@ -2,14 +2,15 @@ function capitalizeFirstLetter(s){
     if (typeof s !== 'string') return ''
     return s.charAt(0).toUpperCase() + s.slice(1);   
 }
-
-// api pipeline
+////////////////////////////////////////////////////////////
+// dispatchEndPoint : an api pipeline
 // parse the req.url that must have the following format:
 // /api/{ressource name} or
 // /api/{ressource name}/{id}
 // then select the targeted controller
 // using the http verb (req.method) and optionnal id
 // call the right controller function
+///////////////////////////////////////////////////////////
 exports.dispatchEndPoint = function(req, res){
     // by convention api endpoint start with /api/...
     if (req.url.indexOf('/api/') > -1) {
@@ -27,14 +28,14 @@ exports.dispatchEndPoint = function(req, res){
                     id = parseInt(urlParts[3]);
                     if (isNaN(id)) {
                             // bad request status
-                            res.writeHead(400, {'content-type':'application/json'});
+                            res.writeHead(400, {'content-type':'text/plain'});
                             res.end();
                             // request not consumed
                             return false;
                         }
                 }
             }
-            //try{
+            try{
                 // dynamically import the targeted controller
                 const Controller = require('./' + controllerName);
                 // instanciate the controller
@@ -78,14 +79,14 @@ exports.dispatchEndPoint = function(req, res){
                     // request consumed
                     return true;
                 }
-            /*} catch(error){
+            } catch(error){
                 // catch likely called because of missing controller class
                 // i.e. require('./' + controllerName) failed
                 console.log('endpoint not found');
                 // not found status
-                res.writeHead(404, {'content-type':'application/json'});
-                res.end(null);
-            }*/
+                res.writeHead(404, {'content-type':'text/plain'});
+                res.end();
+            }
         }
     }
     // request not consumed

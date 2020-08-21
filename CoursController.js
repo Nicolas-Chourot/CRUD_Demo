@@ -1,10 +1,10 @@
-const CoursRepository = require('./models/CoursRepository');
+const Repository = require('./models/Repository');
 class CoursController{
     constructor(req, res){
         console.log('CoursController constructor');
         this.req = req;
         this.res = res;
-        this.coursRepository = new CoursRepository();
+        this.coursRepository = new Repository('Cours');
     }
     getAll(){
         console.log('GET: /api/cours');
@@ -28,6 +28,7 @@ class CoursController{
     post(cours){  
         console.log('POST: /api/cours/', cours); 
         // todo : validate cour before insertion
+        // todo : avoid duplicates
         let newCours = this.coursRepository.add(cours);
         if (newCours) {
             // created status

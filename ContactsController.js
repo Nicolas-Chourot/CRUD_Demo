@@ -1,10 +1,9 @@
-const ContactsRepository = require('./models/ContactsRepository');
+const Repository = require('./models/Repository');
 class ContactsController{
     constructor(req, res){
-        console.log('ContactsController constructor');
         this.req = req;
         this.res = res;
-        this.contactsRepository = new ContactsRepository();
+        this.contactsRepository = new Repository('Contacts');
     }
     getAll(){
         console.log('GET: /api/contacts');
