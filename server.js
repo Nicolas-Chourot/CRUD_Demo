@@ -27,7 +27,7 @@ function AccessControlConfig(res) {
     res.setHeader('Access-Control-Allow-Methods', '*');
 }
 
-function PrefligthPipeLine(req, res){
+function Prefligth(req, res){
     if (req.method === 'OPTIONS'){
         console.log('preflight CORS verifications');
         res.end();
@@ -42,9 +42,7 @@ const http = require('http');
 const server = http.createServer((req, res) => {
     console.log(req.method);
     AccessControlConfig(res);
-    if (PrefligthPipeLine(req, res)){
-        console.log('preflight CORS verifications');
-    } else {
+    if (!Prefligth(req, res)){
         let router = require('./router');
         if (!router.dispatchEndPoint(req, res)) {
             // do something else with request
