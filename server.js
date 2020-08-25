@@ -40,7 +40,6 @@ function Prefligth(req, res){
 
 const http = require('http');
 const server = http.createServer((req, res) => {
-    console.log(req.method);
     AccessControlConfig(res);
     if (!Prefligth(req, res)){
         let router = require('./router');
