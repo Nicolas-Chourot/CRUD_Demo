@@ -3,7 +3,7 @@ function capitalizeFirstLetter(s){
     return s.charAt(0).toUpperCase() + s.slice(1);   
 }
 ////////////////////////////////////////////////////////////
-// dispatchEndPoint : an api pipeline
+// dispatch_API_EndPoint : an api pipeline
 // parse the req.url that must have the following format:
 // /api/{ressource name} or
 // /api/{ressource name}/{id}
@@ -11,7 +11,7 @@ function capitalizeFirstLetter(s){
 // using the http verb (req.method) and optionnal id
 // call the right controller function
 ///////////////////////////////////////////////////////////
-exports.dispatchEndPoint = function(req, res){
+exports.dispatch_API_EndPoint = function(req, res){
     // by convention api endpoint start with /api/...
     if (req.url.indexOf('/api/') > -1) {
         // extract url componants, array from req.url.split("/") should 

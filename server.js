@@ -44,7 +44,7 @@ const server = http.createServer((req, res) => {
     AccessControlConfig(res);
     if (!Prefligth(req, res)){
         let router = require('./router');
-        if (!router.dispatchEndPoint(req, res)) {
+        if (!router.dispatch_API_EndPoint(req, res)) {
             // do something else with request
         }
     }
