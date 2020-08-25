@@ -2,8 +2,9 @@
 const fs = require('fs');
 ///////////////////////////////////////////////////////////////////////////
 // This class provide CRUD operations on JSON objects collection text file 
-// with the assumption that each object has an Id member
-// warning: no type and validation is provided
+// with the assumption that each object have an Id member.
+// If the objectsFile does not exist it will be created on demand.
+// Warning: no type and data validation is provided
 ///////////////////////////////////////////////////////////////////////////
 class Repository {
     constructor(objectsName) {

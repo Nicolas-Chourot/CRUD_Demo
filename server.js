@@ -1,7 +1,7 @@
 function initContacts(){
-    const ContactsRepository = require('./models/ContactsRepository');
+    const ContactsRepository = require('./models/Repository.js');
     const Contact = require('./models/Contact');
-    const contactsRepository = new ContactsRepository();
+    const contactsRepository = new ContactsRepository("contacts");
     contactsRepository.add(new Contact('Nicolas Chourot','Nicolas.Chourot@clg.qc.ca','450 430-3120'));
     contactsRepository.add(new Contact('Joel Dusablon','Joel.Dusablon@clg.qc.ca','450 430-3120'));
     contactsRepository.add(new Contact('Patrice Roy','Patrice.Roy@clg.qc.ca','450 430-3120')); 
@@ -18,16 +18,32 @@ function initContacts(){
         Phone: '450 430-3120'
     });
 }
+
 //initContacts();
 //////////////////////////////////////////////////////////////////////////
-const http = require('http');
-const server = http.createServer((req, res) => {
-    console.log(req.method);
+
+function AccessControlConfig(res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', '*');
+}
+
+function PrefligthPipeLine(req, res){
     if (req.method === 'OPTIONS'){
         console.log('preflight CORS verifications');
         res.end();
+        // request handled
+        return true;
+    }
+    // request not handled
+    return false;
+}
+
+const http = require('http');
+const server = http.createServer((req, res) => {
+    console.log(req.method);
+    AccessControlConfig(res);
+    if (PrefligthPipeLine(req, res)){
+        console.log('preflight CORS verifications');
     } else {
         let router = require('./router');
         if (!router.dispatchEndPoint(req, res)) {
