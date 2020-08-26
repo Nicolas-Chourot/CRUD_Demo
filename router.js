@@ -65,11 +65,11 @@ exports.dispatch_API_EndPoint = function(req, res){
                         return true;
 
                     } else
-                     // it ok to have no id
+                     // it is ok to have no id
                      return true;
                 }
                 else
-                    // it ok to have no id
+                    // it is ok to have no id
                     return true;
             }
         }
