@@ -18,7 +18,7 @@ class Response {
         this.res.writeHead(201, {'content-type':'application/json'});
         this.res.end(JSON.stringify(jsonObj));
     }
-    JSON(json) {
+    JSON(jsonObj) {
         this.res.writeHead(200, {'content-type':'application/json'});
         this.res.end(JSON.stringify(jsonObj));
     }
