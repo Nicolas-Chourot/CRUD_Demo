@@ -10,18 +10,17 @@ class Response {
         // ok status
         this.status(200);
     }
-    
     accept() {
         // accepted status
         this.status(202);
     }
-    created(json) {
+    created(jsonObj) {
         this.res.writeHead(201, {'content-type':'application/json'});
-        this.res.end(JSON.stringify(json));
+        this.res.end(JSON.stringify(jsonObj));
     }
     JSON(json) {
         this.res.writeHead(200, {'content-type':'application/json'});
-        this.res.end(JSON.stringify(json));
+        this.res.end(JSON.stringify(jsonObj));
     }
     notFound() {
         // not found status
@@ -40,7 +39,7 @@ class Response {
         this.status(400);
     }
     internalError() {
-        // bad request status
+        // internal error status
         this.status(500);
     }
 }
