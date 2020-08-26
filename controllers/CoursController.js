@@ -1,4 +1,4 @@
-const Repository = require('./models/Repository');
+const Repository = require('../models/Repository');
 class CoursController{
     constructor(req, res){
         console.log('CoursController constructor');

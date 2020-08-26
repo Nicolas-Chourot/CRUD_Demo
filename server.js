@@ -5,7 +5,8 @@ let Contacts = require('./models/initContacts.js');
 
 function AccessControlConfig(res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader('Access-Control-Allow-Methods', '*');    
+    res.setHeader('Access-Control-Allow-Headers', '*');
 }
 
 function Prefligth(req, res){  
@@ -20,7 +21,9 @@ function Prefligth(req, res){
 }
 
 const http = require('http');
+const ContactsController = require('./controllers/ContactsController.js');
 const server = http.createServer((req, res) => {
+    console.log(req.method);
     AccessControlConfig(res);
     if (!Prefligth(req, res)){
         let router = require('./router');
