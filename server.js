@@ -8,7 +8,7 @@ function AccessControlConfig(res) {
     res.setHeader('Access-Control-Allow-Methods', '*');
 }
 
-function Prefligth(req, res){
+function Prefligth(req, res){  
     if (req.method === 'OPTIONS'){
         console.log('preflight CORS verifications');
         res.end();
