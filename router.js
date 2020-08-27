@@ -104,6 +104,11 @@ exports.dispatch_API_EndPoint = function(req, res){
                 // request consumed
                 return true;
             }
+            if (req.method === 'PATCH'){
+                processJSONBody(req, controller,"patch");
+                // request consumed
+                return true;
+            }
             if (req.method === 'DELETE') {
                 if (!isNaN(id))
                     controller.remove(id);

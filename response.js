@@ -26,6 +26,10 @@ class Response {
         // not found status
         this.status(404);
     }
+    notAloud() {
+        // not aloud status
+        this.status(405);
+    }
     unsupported () {
         // Unsupported Media Type status
         this.status(415);
