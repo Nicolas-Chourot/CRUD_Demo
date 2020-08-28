@@ -1,4 +1,5 @@
-module.exports = class Cours{
+module.exports = 
+class Cours{
     constructor(nom, sigle)
     {
         this.Id = 0;

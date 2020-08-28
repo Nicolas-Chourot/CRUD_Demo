@@ -6,7 +6,8 @@ const fs = require('fs');
 // If the objectsFile does not exist it will be created on demand.
 // Warning: no type and data validation is provided
 ///////////////////////////////////////////////////////////////////////////
-module.exports = class Repository {
+module.exports = 
+class Repository {
     constructor(objectsName) {
         this.objectsList = [];
         this.objectsFile = `./data/${objectsName}.json`;
@@ -14,7 +15,10 @@ module.exports = class Repository {
     }
     read() {
         try{
+            // Here we use the synchronus version readFile in order  
+            // to avoid concurrency problems
             let rawdata = fs.readFileSync(this.objectsFile);
+            // we assume here that the json data is formatted correctly
             this.objectsList = JSON.parse(rawdata);
         } catch(error) {
             if (error.code === 'ENOENT') {
@@ -24,6 +28,8 @@ module.exports = class Repository {
         }
     }
     write() {
+        // Here we use the synchronus version writeFile in order
+        // to avoid concurrency problems  
         fs.writeFileSync(this.objectsFile, JSON.stringify(this.objectsList));
         this.read();
     }

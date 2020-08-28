@@ -8,7 +8,6 @@ function AccessControlConfig(res) {
     res.setHeader('Access-Control-Allow-Methods', '*');    
     res.setHeader('Access-Control-Allow-Headers', '*');
 }
-
 function Prefligth(req, res){  
     if (req.method === 'OPTIONS'){
         console.log('preflight CORS verifications');
@@ -19,7 +18,6 @@ function Prefligth(req, res){
     // request not handled
     return false;
 }
-
 const http = require('http');
 const ContactsController = require('./controllers/ContactsController.js');
 const server = http.createServer((req, res) => {

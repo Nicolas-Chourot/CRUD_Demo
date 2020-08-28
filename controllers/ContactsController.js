@@ -1,7 +1,8 @@
 const Repository = require('../models/Repository');
 const Controller = require('./Controller');
 
-module.exports = class ContactsController extends Controller {
+module.exports = 
+class ContactsController extends Controller {
     constructor(req, res){
         super(req, res);
         this.contactsRepository = new Repository('Contacts');
@@ -25,7 +26,7 @@ module.exports = class ContactsController extends Controller {
             this.response.internalError();
     }
     put(contact){
-        // todo : validate contact before insertion
+        // todo : validate contact before updating
         if (this.contactsRepository.update(contact))
             this.response.ok();
         else 

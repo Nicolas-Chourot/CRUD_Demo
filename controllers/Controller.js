@@ -1,5 +1,6 @@
 const Response = require('../Response.js');
-module.exports = class Controller {
+module.exports = 
+class Controller {
     constructor(req, res) {
         this.req = req;
         this.res = res;

@@ -1,4 +1,5 @@
-module.exports = class Response {
+module.exports = 
+class Response {
     constructor (res){
         this.res = res;
     }
@@ -10,10 +11,7 @@ module.exports = class Response {
         // ok status
         this.status(200);
     }
-    accept() {
-        // accepted status
-        this.status(202);
-    }
+   
     created(jsonObj) {
         this.res.writeHead(201, {'content-type':'application/json'});
         this.res.end(JSON.stringify(jsonObj));
@@ -22,13 +20,25 @@ module.exports = class Response {
         this.res.writeHead(200, {'content-type':'application/json'});
         this.res.end(JSON.stringify(jsonObj));
     }
+    noContent() {
+        // no content status
+        this.status(204);
+    }
     notFound() {
         // not found status
         this.status(404);
     }
+    forbidden() {
+        // forbidden status
+        this.status(403);
+    }
     notAloud() {
-        // not aloud status
+        // Method not aloud status
         this.status(405);
+    }
+    conflict() {
+      // Conflict status
+      this.status(409);  
     }
     unsupported () {
         // Unsupported Media Type status

@@ -1,4 +1,5 @@
-module.exports = class Contact{
+module.exports = 
+class Contact{
     constructor(name, email, phone)
     {
         this.Id = 0;
