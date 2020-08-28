@@ -1,4 +1,4 @@
-class Response {
+module.exports = class Response {
     constructor (res){
         this.res = res;
     }
@@ -47,5 +47,3 @@ class Response {
         this.status(500);
     }
 }
-
-module.exports = Response;

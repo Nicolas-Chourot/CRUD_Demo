@@ -1,6 +1,6 @@
 const Repository = require('../models/Repository');
 const Controller = require('./Controller');
-class CoursController extends Controller {
+module.exports = class CoursController extends Controller {
     constructor(req, res){
         console.log('CoursController constructor');
         super(req, res);
@@ -38,5 +38,3 @@ class CoursController extends Controller {
             this.response.notFound();
     }
 }
-
-module.exports = CoursController;

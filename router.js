@@ -12,6 +12,9 @@ function capitalizeFirstLetter(s){
 // then select the targeted controller
 // using the http verb (req.method) and optionnal id
 // call the right controller function
+// warning: this function does not handle sub resource and
+// and query string of style like 
+// api/resource/id/subresource/id?....
 ///////////////////////////////////////////////////////////
 exports.dispatch_API_EndPoint = function(req, res){
 
@@ -46,9 +49,9 @@ exports.dispatch_API_EndPoint = function(req, res){
         // by convention api endpoint start with /api/...
         if (url.indexOf('/api/') > -1) {
             // extract url componants, array from req.url.split("/") should 
-            // look like ['','api','{ressource name}','{id}]'
+            // look like ['','api','{resource name}','{id}]'
             let urlParts = url.split("/");
-            // do we have a ressource name
+            // do we have a resource name
             if (urlParts.length > 2) {
                 // by convention controller name -> NameController
                 controllerName = capitalizeFirstLetter(urlParts[2]) + 'Controller';

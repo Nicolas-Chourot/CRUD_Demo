@@ -6,7 +6,7 @@ const fs = require('fs');
 // If the objectsFile does not exist it will be created on demand.
 // Warning: no type and data validation is provided
 ///////////////////////////////////////////////////////////////////////////
-class Repository {
+module.exports = class Repository {
     constructor(objectsName) {
         this.objectsList = [];
         this.objectsFile = `./data/${objectsName}.json`;
@@ -82,5 +82,3 @@ class Repository {
         return false;
     }
 }
-
-module.exports = Repository;

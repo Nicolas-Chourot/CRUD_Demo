@@ -1,4 +1,4 @@
-class Contact{
+module.exports = class Contact{
     constructor(name, email, phone)
     {
         this.Id = 0;
@@ -7,5 +7,3 @@ class Contact{
         this.Phone = phone;
     }
 }
-
-module.exports = Contact;
