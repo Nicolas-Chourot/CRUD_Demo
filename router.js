@@ -25,7 +25,10 @@ exports.dispatch_API_EndPoint = function(req, res){
     // and and pass it to controllerMethod
     // if an error occurs it will send an error response
     function processJSONBody(req, controller, methodName) {
-        req.on('data', body =>{
+        let body = [];
+        req.on('data', chunk =>{
+            body.push(chunk);
+        }).on('end', ()=>{
             try {
                 // we assume that the data is in the JSON format
                 if (req.headers['content-type'] === "application/json") {

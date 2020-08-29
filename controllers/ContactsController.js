@@ -34,7 +34,7 @@ class ContactsController extends Controller {
     }
     remove(id){
         if (this.contactsRepository.remove(id))
-            this.response.accept();
+            this.response.accepted();
         else
             this.response.notFound();
     }

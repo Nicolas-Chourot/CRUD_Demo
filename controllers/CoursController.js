@@ -35,7 +35,7 @@ class CoursController extends Controller {
     }
     remove(id){
         if (this.coursRepository.remove(id))
-            this.response.accept();
+            this.response.accepted();
         else
             this.response.notFound();
     }
