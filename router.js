@@ -4,7 +4,7 @@ function capitalizeFirstLetter(s){
 }
 
 
-////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
 // dispatch_API_EndPoint : an api pipeline
 // parse the req.url that must have the following format:
 // /api/{ressource name} or
@@ -15,7 +15,12 @@ function capitalizeFirstLetter(s){
 // warning: this function does not handle sub resource and
 // and query string of style like 
 // api/resource/id/subresource/id?....
-///////////////////////////////////////////////////////////
+//
+// Important note about controllers:
+// You must respect pluralize convention: 
+// For ressource name RessourName you have to name the controller
+// RessourceNamesController that must inherit from Controller class
+/////////////////////////////////////////////////////////////////////
 exports.dispatch_API_EndPoint = function(req, res){
 
     const Reponse = require("./response");

@@ -1,4 +1,11 @@
 const Response = require('../Response.js');
+/////////////////////////////////////////////////////////////////////
+// Important note about controllers:
+// You must respect pluralize convention: 
+// For ressource name RessourName you have to name the controller
+// RessourceNamesController that must inherit from Controller class
+// in order to have proper routing from request to controller action
+/////////////////////////////////////////////////////////////////////
 module.exports = 
 class Controller {
     constructor(req, res) {
@@ -25,5 +32,3 @@ class Controller {
         this.response.notAloud();
     }
 }
-
-//module.exports = Controller;
