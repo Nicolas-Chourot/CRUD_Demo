@@ -26,9 +26,9 @@ exports.dispatch_API_EndPoint = function(req, res){
     // if an error occurs it will send an error response
     function processJSONBody(req, controller, methodName) {
         let body = [];
-        req.on('data', chunk =>{
+        req.on('data', chunk => {
             body.push(chunk);
-        }).on('end', ()=>{
+        }).on('end', () => {
             try {
                 // we assume that the data is in the JSON format
                 if (req.headers['content-type'] === "application/json") {
@@ -83,6 +83,11 @@ exports.dispatch_API_EndPoint = function(req, res){
         return false;
     }
    
+    if (req.url == "/api"){
+        const endpoints = require('./endpoints');
+        endpoints.list(res);
+        return true;
+    }
     if (API_Endpoint_Ok(req.url)) {
         // At this point we have a controllerName and an id holding a number or undefined value.
         // in the following, we will call the corresponding method of the controller class accordingly  
@@ -90,7 +95,7 @@ exports.dispatch_API_EndPoint = function(req, res){
         // for the POST and PUT verb, will we have to extract the data from the body of the request
         try{
             // dynamically import the targeted controller
-            // if the controllerName dos not exist the catch section will called
+            // if the controllerName dos not exist the catch section will be called
             const Controller = require('./controllers/' + controllerName);
             // instanciate the controller       
             let controller =  new Controller(req, res);

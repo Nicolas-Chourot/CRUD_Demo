@@ -3,8 +3,8 @@ class Contact{
     constructor(name, email, phone)
     {
         this.Id = 0;
-        this.Name = name;
-        this.Email = email;
-        this.Phone = phone;
+        this.Name = name !== undefined ? name : "";
+        this.Email = undefined ? email : "";
+        this.Phone = undefined ? phone : "";
     }
 }

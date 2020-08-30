@@ -1,7 +1,9 @@
+/////////////////////////////////////////////////////////////////////////////
+// Uncomment to create and fill with data ./contacts.json file
+// let Contacts = require('./models/initContacts.js');
+// Contacts.initContacts(); 
+//////////////////////////////////////////////////////////////////////////////
 
-let Contacts = require('./models/initContacts.js');
-//Contacts.initContacts();
-//////////////////////////////////////////////////////////////////////////
 function ShowRequestInfo(req){
     //const URL = require('url').URL;
     //let url = new URL(req.url);
@@ -29,7 +31,7 @@ const http = require('http');
 const ContactsController = require('./controllers/ContactsController.js');
 const server = http.createServer((req, res) => {
     //console.log(req.method);
-    ShowRequestInfo(req);
+    //ShowRequestInfo(req);
     AccessControlConfig(res);
     if (!Prefligth(req, res)){
         let router = require('./router');

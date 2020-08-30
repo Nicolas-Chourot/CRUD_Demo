@@ -2,39 +2,38 @@ const Repository = require('../models/Repository');
 const Controller = require('./Controller');
 
 module.exports = 
-class CoursController extends Controller {
+class CoursesController extends Controller {
     constructor(req, res){
-        console.log('CoursController constructor');
         super(req, res);
-        this.coursRepository = new Repository('Cours');
+        this.coursesRepository = new Repository('Courses');
     }
     getAll(){
-        this.response.JSON(this.coursRepository.getAll());
+        this.response.JSON(this.coursesRepository.getAll());
     }
     get(id){
         if(!isNaN(id))
-            this.response.JSON(this.coursRepository.get(id));
+            this.response.JSON(this.coursesRepository.get(id));
         else
-            this.response.JSON(this.coursRepository.getAll());
+            this.response.JSON(this.coursesRepository.getAll());
     }
-    post(cours){  
+    post(course){  
         // todo : validate cour before insertion
         // todo : avoid duplicates
-        let newCours = this.coursRepository.add(cours);
-        if (newCours) 
-            this.response.created(JSON.stringify(newCours));
+        let newCourse = this.coursesRepository.add(course);
+        if (newCourse) 
+            this.response.created(JSON.stringify(newCourse));
          else 
             this.response.internalError();
     }
-    put(cours){
+    put(course){
         // todo : validate contact before updating
-        if (this.coursRepository.update(cours))
+        if (this.coursesRepository.update(course))
             this.response.ok();
         else 
             this.response.notFound();
     }
     remove(id){
-        if (this.coursRepository.remove(id))
+        if (this.coursesRepository.remove(id))
             this.response.accepted();
         else
             this.response.notFound();
