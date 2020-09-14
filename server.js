@@ -27,9 +27,7 @@ function Prefligth(req, res){
     // request not handled
     return false;
 }
-const http = require('http');
-const ContactsController = require('./controllers/ContactsController.js');
-const server = http.createServer((req, res) => {
+const server = require('http').createServer((req, res) => {
     //console.log(req.method);
     //ShowRequestInfo(req);
     AccessControlConfig(res);

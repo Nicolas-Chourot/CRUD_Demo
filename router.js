@@ -54,6 +54,10 @@ exports.dispatch_API_EndPoint = function(req, res){
     // this function check if url contain a valid API endpoint.
     // in the process controllerName and optional id will be extracted
     function API_Endpoint_Ok(url){
+        // ignore the query string
+        let queryStringMarkerPos = url.indexOf('?');
+        if (queryStringMarkerPos > -1)
+            url = url.substr(0, url.indexOf('?'));
         // by convention api endpoint start with /api/...
         if (url.indexOf('/api/') > -1) {
             // extract url componants, array from req.url.split("/") should 

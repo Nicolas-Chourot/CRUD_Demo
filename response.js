@@ -22,7 +22,7 @@ class Response {
     JSON(jsonObj) {
         this.res.writeHead(200, {'content-type':'application/json'});
         this.res.end(JSON.stringify(jsonObj));
-    }
+    }  
     noContent() {
         // no content status
         this.status(204);
