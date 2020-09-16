@@ -7,5 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Nicolas Chourot - august 2020",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "query-string": "^6.13.2"
+  }
 }

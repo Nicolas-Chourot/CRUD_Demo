@@ -59,4 +59,8 @@ class Response {
         // internal error status
         this.status(500);
     }
+    notImplemented() {
+        // internal error status
+        this.status(501);
+    }
 }

@@ -1,8 +1,7 @@
 const Repository = require('../models/Repository');
-const Controller = require('./Controller');
 
 module.exports = 
-class CoursesController extends Controller {
+class CoursesController extends require('./Controller') {
     constructor(req, res){
         super(req, res);
         this.coursesRepository = new Repository('Courses');

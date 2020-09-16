@@ -28,6 +28,8 @@ function Prefligth(req, res){
     return false;
 }
 const server = require('http').createServer((req, res) => {
+    // Middlewares pipeline
+    ///////////////////////////////////////////////////
     //console.log(req.method);
     //ShowRequestInfo(req);
     AccessControlConfig(res);

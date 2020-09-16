@@ -1,4 +1,5 @@
 const Response = require('../Response.js');
+const queryString = require('query-string');
 /////////////////////////////////////////////////////////////////////
 // Important note about controllers:
 // You must respect pluralize convention: 
@@ -13,22 +14,31 @@ class Controller {
         this.res = res;
         this.response = new Response(res);
     }
+    getQueryStringParams(){
+        let url = this.req.url;
+        if (url.indexOf('?') > -1) {
+            url = url.substring(url.indexOf('?'),url.length);
+            const parsed = queryString.parse(url);
+            return parsed;
+        }
+        return null;
+    }
     getAll(){
-        this.response.notFound();
+        this.response.notImplemented();
     }
     get(id){
-        this.response.notFound();
-    }
+        this.response.notImplemented();
+    }  
     post(obj){  
-        this.response.notAloud();
+        this.response.notImplemented();
     }
     put(obj){
-        this.response.notAloud();
+        this.response.notImplemented();
     }
     patch(obj){
-        this.response.notAloud();
+        this.response.notImplemented();
     }
     remove(id){
-        this.response.notAloud();
+        this.response.notImplemented();
     }
 }

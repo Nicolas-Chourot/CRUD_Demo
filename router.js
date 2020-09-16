@@ -5,16 +5,15 @@ function capitalizeFirstLetter(s){
 
 
 //////////////////////////////////////////////////////////////////////
-// dispatch_API_EndPoint : an api pipeline
+// dispatch_API_EndPoint middleware
 // parse the req.url that must have the following format:
 // /api/{ressource name} or
 // /api/{ressource name}/{id}
 // then select the targeted controller
 // using the http verb (req.method) and optionnal id
 // call the right controller function
-// warning: this function does not handle sub resource and
-// and query string of style like 
-// api/resource/id/subresource/id?....
+// warning: this function does not handle sub resource
+// of like the following : api/resource/id/subresource/id?....
 //
 // Important note about controllers:
 // You must respect pluralize convention: 
@@ -52,9 +51,9 @@ exports.dispatch_API_EndPoint = function(req, res){
     let id = undefined;
 
     // this function check if url contain a valid API endpoint.
-    // in the process controllerName and optional id will be extracted
+    // in the process, controllerName and optional id will be extracted
     function API_Endpoint_Ok(url){
-        // ignore the query string
+        // ignore the query string, it will be handled by the targeted controller
         let queryStringMarkerPos = url.indexOf('?');
         if (queryStringMarkerPos > -1)
             url = url.substr(0, url.indexOf('?'));
@@ -63,11 +62,11 @@ exports.dispatch_API_EndPoint = function(req, res){
             // extract url componants, array from req.url.split("/") should 
             // look like ['','api','{resource name}','{id}]'
             let urlParts = url.split("/");
-            // do we have a resource name
+            // do we have a resource name?
             if (urlParts.length > 2) {
                 // by convention controller name -> NameController
                 controllerName = capitalizeFirstLetter(urlParts[2]) + 'Controller';
-                // do we have an id
+                // do we have an id?
                 if (urlParts.length > 3){
                     if (urlParts[3] !== '') {
                         id = parseInt(urlParts[3]);
@@ -82,8 +81,7 @@ exports.dispatch_API_EndPoint = function(req, res){
                     } else
                      // it is ok to have no id
                      return true;
-                }
-                else
+                } else
                     // it is ok to have no id
                     return true;
             }
@@ -104,7 +102,7 @@ exports.dispatch_API_EndPoint = function(req, res){
         // for the POST and PUT verb, will we have to extract the data from the body of the request
         try{
             // dynamically import the targeted controller
-            // if the controllerName dos not exist the catch section will be called
+            // if the controllerName does not exist the catch section will be called
             const Controller = require('./controllers/' + controllerName);
             // instanciate the controller       
             let controller =  new Controller(req, res);
@@ -140,6 +138,7 @@ exports.dispatch_API_EndPoint = function(req, res){
         } catch(error){
             // catch likely called because of missing controller class
             // i.e. require('./' + controllerName) failed
+            // but also any unhandled error...
             console.log('endpoint not found');
             response.notFound();
                 // request consumed
@@ -148,5 +147,6 @@ exports.dispatch_API_EndPoint = function(req, res){
     }
     // not an API endpoint
     // request not consumed
+    // must be handled by another middleware
     return false;
 }
