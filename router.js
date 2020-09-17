@@ -107,6 +107,7 @@ exports.dispatch_API_EndPoint = function(req, res){
             // instanciate the controller       
             let controller =  new Controller(req, res);
 
+            // to do : find methods that contain the http verb
             if (req.method === 'GET') {
                 controller.get(id);
                 // request consumed

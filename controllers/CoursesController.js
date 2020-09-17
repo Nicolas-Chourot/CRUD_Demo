@@ -6,9 +6,6 @@ class CoursesController extends require('./Controller') {
         super(req, res);
         this.coursesRepository = new Repository('Courses');
     }
-    getAll(){
-        this.response.JSON(this.coursesRepository.getAll());
-    }
     get(id){
         if(!isNaN(id))
             this.response.JSON(this.coursesRepository.get(id));

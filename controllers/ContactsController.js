@@ -6,9 +6,6 @@ class ContactsController extends require('./Controller') {
         super(req, res);
         this.contactsRepository = new Repository('Contacts');
     }
-    getAll(){
-        this.response.JSON(this.contactsRepository.getAll());
-    }
     get(id){
         if(!isNaN(id))
             this.response.JSON(this.contactsRepository.get(id));

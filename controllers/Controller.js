@@ -23,9 +23,6 @@ class Controller {
         }
         return null;
     }
-    getAll(){
-        this.response.notImplemented();
-    }
     get(id){
         this.response.notImplemented();
     }  
