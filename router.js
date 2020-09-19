@@ -22,8 +22,8 @@ function capitalizeFirstLetter(s){
 /////////////////////////////////////////////////////////////////////
 exports.dispatch_API_EndPoint = function(req, res){
 
-    const Reponse = require("./response");
-    let response = new Reponse(res);
+    const Response = require("./response");
+    let response = new Response(res);
 
     // this function extract the JSON data from the body of the request
     // and and pass it to controllerMethod

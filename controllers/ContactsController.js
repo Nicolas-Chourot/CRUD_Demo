@@ -12,6 +12,7 @@ class ContactsController extends require('./Controller') {
         else
             this.response.JSON(this.contactsRepository.getAll());
     }
+     
     post(contact){  
         // todo : validate contact before insertion
         // todo : avoid duplicates
@@ -21,6 +22,7 @@ class ContactsController extends require('./Controller') {
         else
             this.response.internalError();
     }
+   
     put(contact){
         // todo : validate contact before updating
         if (this.contactsRepository.update(contact))
