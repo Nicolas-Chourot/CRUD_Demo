@@ -30,10 +30,10 @@ class MathsController extends require('./Controller') {
                     let x = 0;
                     let y = 0;
                     if ('x' in params) {
-                        let x = parseFloat(params.x);
+                        x = parseFloat(params.x);
                         if (!isNaN(x)) {
                             if ('y' in params) {
-                                let y = parseFloat(params.y);
+                                y = parseFloat(params.y);
                                 if (!isNaN(y)) {
                                     if (Object.keys(params).length > 3) {
                                         return this.error(params, "too many parameters");
