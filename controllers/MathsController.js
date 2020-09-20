@@ -1,29 +1,3 @@
-function factorial(n){
-    if(n===0||n===1){
-      return 1;
-    }
-    return n*factorial(n-1);
-}
-
-function isPrime(value) {
-    for(var i = 2; i < value; i++) {
-        if(value % i === 0) {
-            return false;
-        }
-    }
-    return value > 1;
-}
-
-function findPrime(n){
-    let primeNumer = 0;
-    for ( let i=0; i < n; i++){
-        primeNumer++;
-        while (!isPrime(primeNumer)){
-            primeNumer++;
-        }
-    }
-    return primeNumer;
-}
 
 module.exports = 
 class MathsController extends require('./Controller') {
@@ -53,10 +27,14 @@ class MathsController extends require('./Controller') {
                 case '*': // multiply operation
                 case '/': // divide operation
                 case '%': // modulo operation
+                    let x = 0;
+                    let y = 0;
                     if ('x' in params) {
-                        if (!isNaN(parseFloat(params.x))) {
+                        let x = parseFloat(params.x);
+                        if (!isNaN(x)) {
                             if ('y' in params) {
-                                if (!isNaN(parseFloat(params.y))) {
+                                let y = parseFloat(params.y);
+                                if (!isNaN(y)) {
                                     if (Object.keys(params).length > 3) {
                                         return this.error(params, "too many parameters");
                                     }
@@ -72,12 +50,15 @@ class MathsController extends require('./Controller') {
                     } else {
                         return this.error(params, "'x' parameter is missing");
                     }
+                    params.x = x;
+                    params.y = y;
                     break;
                 case '!': // factorial operation
                 case 'p': // is prime number operation
                 case 'n': // find nth prime number operation
+                    let n= 0;
                     if ('n' in params){
-                        let n = parseFloat(params.n);
+                        n = parseInt(params.n);
                         if (!isNaN(n)) {
                             if (n > 0) {
                                 if (Object.keys(params).length > 2) {
@@ -92,6 +73,7 @@ class MathsController extends require('./Controller') {
                     } else {
                         return this.error(params, "'n' parameter is missing");
                     }
+                    params.n = n;
                     break;
                 default:
                     return this.error(params, "unknown operation");
@@ -104,33 +86,34 @@ class MathsController extends require('./Controller') {
     }
    
     doOperation(params){
+        const maths = require('../maths');
         switch (params.op){
             case ' ': // add operation
             case '.': // add operation
                 params.op = '+';
-                this.result(params, parseFloat(params.x) + parseFloat(params.y));
+                this.result(params, maths.add(params.x, params.y));
                 break;              
             case '-': // substract operation
-                this.result(params, parseFloat(params.x) - parseFloat(params.y));
+                this.result(params, maths.sub(params.x, params.y));
                 break;
             case '*': // multiply operation
-                this.result(params, parseFloat(params.x) * parseFloat(params.y));
+                this.result(params, maths.mul(params.x, params.y));
                 break;
             case '/': // divide operation
-                this.result(params,parseFloat(params.x) / parseFloat(params.y));
+                this.result(params, maths.div(params.x, params.y));
                 break;
             case '%': // modulo operation
-                this.result(params, parseFloat(params.x) % parseFloat(params.y));
+                this.result(params, maths.mod(params.x, params.y));
                 break;
             case '!': // factorial operation
-                this.result(params, factorial(parseInt(params.n)));
+                this.result(params, maths.factorial(params.n));
                 break;
             case 'p': // is prime number operation
-                this.result(params, isPrime(parseInt(params.n)));
+                this.result(params, maths.isPrime(params.n));
                 break;
             case 'n': // find the nth prime number operation
-                this.result(params, findPrime(parseInt(params.n)));
-                break;
+                this.result(params, maths.findPrime(params.n));
+                break; 
         }
     }
 

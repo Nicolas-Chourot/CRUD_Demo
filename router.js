@@ -141,6 +141,7 @@ exports.dispatch_API_EndPoint = function(req, res){
             // i.e. require('./' + controllerName) failed
             // but also any unhandled error...
             console.log('endpoint not found');
+            console.log(error);
             response.notFound();
                 // request consumed
                 return true;
