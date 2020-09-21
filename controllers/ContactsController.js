@@ -32,7 +32,7 @@ class ContactsController extends require('./Controller') {
         else 
             this.response.notFound();
     }
-    // GET: api/contacts/{id}
+    // DELETE: api/contacts/{id}
     remove(id){
         if (this.contactsRepository.remove(id))
             this.response.accepted();
