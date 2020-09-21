@@ -6,13 +6,15 @@ class ContactsController extends require('./Controller') {
         super(req, res);
         this.contactsRepository = new Repository('Contacts');
     }
+    // GET: api/contacts
+    // GET: api/contacts/{id}
     get(id){
         if(!isNaN(id))
             this.response.JSON(this.contactsRepository.get(id));
         else
             this.response.JSON(this.contactsRepository.getAll());
     }
-     
+    // POST: api/contacts body payload[{"Id": 0, "Name": "...", "Email": "...", "Phone": "..."}]
     post(contact){  
         // todo : validate contact before insertion
         // todo : avoid duplicates
@@ -22,7 +24,7 @@ class ContactsController extends require('./Controller') {
         else
             this.response.internalError();
     }
-   
+    // PUT: api/contacts body payload[{"Id":..., "Name": "...", "Email": "...", "Phone": "..."}]
     put(contact){
         // todo : validate contact before updating
         if (this.contactsRepository.update(contact))
@@ -30,6 +32,7 @@ class ContactsController extends require('./Controller') {
         else 
             this.response.notFound();
     }
+    // GET: api/contacts/{id}
     remove(id){
         if (this.contactsRepository.remove(id))
             this.response.accepted();
