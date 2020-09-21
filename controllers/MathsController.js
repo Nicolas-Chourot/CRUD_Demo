@@ -120,7 +120,7 @@ class MathsController extends require('./Controller') {
     help() {
         // expose all the possible query strings
         let content = "<div style=font-family:arial>";
-        content += "<h3>GET : Maths endpoint  <br> List of possible query strings:</h3><hr>";
+        content += "<h3>GET : api/maths endpoint  <br> List of possible query strings:</h3><hr>";
         content += "<h4>? op = + & x = number & y = number <br>return {\"op\":\"+\", \"x\":number, \"y\":number, \"value\": x + y} </h4>";
         content += "<h4>? op = - & x = number & y = number <br>return {\"op\":\"-\", \"x\":number, \"y\":number, \"value\": x - y} </h4>";
         content += "<h4>? op = * & x = number & y = number <br>return {\"op\":\"*\", \"x\":number, \"y\":number, \"value\": x * y} </h4>";

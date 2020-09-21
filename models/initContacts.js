@@ -1,6 +1,6 @@
 exports.initContacts = function (){
     const ContactsRepository = require('./Repository.js');
-    const Contact = require('./Contact');
+    const Contact = require('./contact');
     const contactsRepository = new ContactsRepository("contacts");
     contactsRepository.add(new Contact('Nicolas Chourot','Nicolas.Chourot@clg.qc.ca','450 430-3120'));
     contactsRepository.add(new Contact('Joel Dusablon','Joel.Dusablon@clg.qc.ca','450 430-3120'));

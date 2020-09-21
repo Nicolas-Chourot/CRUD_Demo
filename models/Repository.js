@@ -9,6 +9,7 @@ const fs = require('fs');
 module.exports = 
 class Repository {
     constructor(objectsName) {
+        objectsName = objectsName.toLowerCase();
         this.objectsList = [];
         this.objectsFile = `./data/${objectsName}.json`;
         this.read();
